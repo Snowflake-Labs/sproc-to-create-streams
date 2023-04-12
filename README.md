@@ -22,9 +22,28 @@ NOTE
 6.  The javascript variables can be undefined and deleted to optimize memory.  I'll be doing that over time as well.
 7.  To look at all the running statements in the procedure, you can use the role of an ACCOUNTADMIN or any other role that has the privilege to see the query history in Snowsight.  To access query history, click on Activity -> Query History on the left side menu.
 
+NAMING CONVENTIONS
+---
+The created stream follows the naming convention of `<table name>_STREAM`.  For eg., if the table/view name is `PRODUCT_INFO`, then the created stream will have the name `PRODUCT_INFO_STREAM`.  There are times when you may have table/view names starting with a numeric character - for eg., `"2019_PRODUCT_INFO"`.  The stream name for such an object name will be `"2019_PRODUCT_INFO_STREAM"`.
+  
 USAGE
 ---
 On the Consumer side, copy and paste the contents of the file in an individual worksheet (NOT PART OF A FOLDER) in Snowsight and run.
+
+CHECKING TO SEE IF STREAMS HAVE BEEN CREATED
+---
+
+To check for streams:
+
+```
+SHOW STREAMS;
+```
+If you have enabled streams on table `PRODUCT_INFO` called `PRODUCT_INFO_STREAM`, you can check to see if it contains data:
+
+```
+SELECT SYSTEM$STREAM_HAS_DATA('PRODUCT_INFO_STREAM');
+```
+If it contains data, the above query will return `True`.  If it does not contain data, then it will return `False`.
 
 MISCELLANEOUS
 ---
