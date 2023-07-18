@@ -19,9 +19,11 @@ use role accountadmin;
 //the warehouse needs to be created as a prerequisite
 use warehouse osr;
 
-//create the database to hold all the audit objects
-create database consumer_snowflake_sproc;
-create schema consumer_sproc;
+//create the database to hold all the audit and stream objects
+create database SHARINGOPS;
+create schema SHARINGOPS_CONSUMER;
+use database SHARINGOPS;
+use schema SHARINGOPS_CONSUMER;
 
 //create temporary tables to hold all the objects for audit purposes
 //if need be the word TEMPORARY can be removed to create permanent tables
